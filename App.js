@@ -1,5 +1,6 @@
 import { StyleSheet, Image, View, Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 
 import Home from './src/screens/Home';
@@ -117,6 +118,13 @@ function MyTabs() {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'Sansation-Regular': require('./assets/fonts/Sansation_Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // ou renderizar um componente de carregamento, se preferir
+  }
   return (
     <NavigationContainer style={styles.routerNavContainer}>
       <MyTabs />
