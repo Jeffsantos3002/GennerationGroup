@@ -42,14 +42,10 @@ function MyTabs() {
               <Text
                 style={{
                   color: focused ? '#00C950' : 'gray',
-                  fontSize: 12,
-                  fontFamily: 'Sansation-Regular'
+                  ...styles.navRouter
                 }}
               >Home</Text>            
             </View>
-          ),
-          tabBarLabel: ({ focused, color }) => (
-            <Text style={{ color, fontSize: 54 }}>Qualcoisa</Text>
           ),
         }}
       />
@@ -61,7 +57,7 @@ function MyTabs() {
             <Text
                 style={{
                   color: focused ? '#00C950' : 'gray',
-                  fontSize: 12
+                  ...styles.navRouter
                 }}
               >Transações</Text>  
           </View>
@@ -76,7 +72,7 @@ function MyTabs() {
             <Text
                 style={{
                   color: focused ? '#00C950' : 'gray',
-                  fontSize: 12
+                  ...styles.navRouter
                 }}
               >Adicionar</Text>  
           </View>
@@ -91,7 +87,7 @@ function MyTabs() {
               <Text
                 style={{
                   color: focused ? '#00C950' : 'gray',
-                  fontSize: 12
+                  ...styles.navRouter
                 }}
               >Relatório</Text>  
             </View>
@@ -106,7 +102,7 @@ function MyTabs() {
             <Text
                 style={{
                   color: focused ? '#00C950' : 'gray',
-                  fontSize: 12
+                  ...styles.navRouter
                 }}
               >Perfil</Text>  
           </View>
@@ -120,6 +116,8 @@ function MyTabs() {
 export default function App() {
   const [fontsLoaded] = useFonts({
     'Sansation-Regular': require('./assets/fonts/Sansation_Regular.ttf'),
+    'Sansation-Regular': require('./assets/fonts/Sansation_Bold.ttf')
+
   });
 
   if (!fontsLoaded) {
@@ -155,5 +153,11 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     color: "#00C950",
     backgroundColor: "#00C950"
+  },
+  navRouter: {
+    fontSize: 10,
+    fontFamily: 'Sansation-Regular',
+    fontWeight: '400',
+    paddingTop: 12
   }
 });

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffffff',
-    fontSize: 16,
-        fontFamily: 'Sansation-Regular'
+    fontSize: 12,
+    fontFamily: 'Sansation-Regular'
   },
 });
