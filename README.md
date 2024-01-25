@@ -13,7 +13,7 @@ npm install
 yarn install
 
 ### 3. Iniciar o Projeto Expo:
-expo start
+npx expo start
 
 
 
