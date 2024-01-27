@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default function Relatorio() {
+import DrawerOptions from '../componentes/DrawerOptions';
+
+export default function Relatorio({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Relatorio</Text>
+      <DrawerOptions/>
       <StatusBar style="auto" />
     </View>
   );

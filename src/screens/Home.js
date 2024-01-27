@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import DrawerOptions from '../componentes/DrawerOptions';
+import React, { useRef } from "react";
 
 import Options from '../../assets/options.svg'
 import Notificacion from '../../assets/notificacao.svg';
@@ -12,15 +14,17 @@ import Saldo from '../../assets/saldo.svg';
 import ButtonGroup from '../componentes/ButtonGroup';
 
 export default function Home() {
-  const navigation = useNavigation();
-  const navigateToAssine = () => {
-    navigation.navigate('Assine');
-  };
+  const refRBSheet = useRef();
 
+  const openDrawer = () => {
+    if (refRBSheet.current) {
+      refRBSheet.current.open();
+    }
+  };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 60 }}>
       <View style={styles.header}>
-        <Options fill="black"/>
+        <Options fill="black" onPress={openDrawer}/>
         <View style={styles.headerCol2}>
           <View style={{flexDirection: 'row'}}>
             <View style={{width: 43, height: 43, backgroundColor: '#D9D9D9', borderRadius: 100/2, marginHorizontal: 18}}></View>
@@ -39,14 +43,14 @@ export default function Home() {
               <Pagar/>
               <View style={{marginLeft: 9}}>
                 <Text style={{...styles.textBase}}>A pagar</Text>
-                <Text style={styles.textBase}>R$ 0,00</Text>
+                <Text style={styles.textBase}>*********</Text>
               </View>
             </View>
             <View style={styles.information}>
               <Receitas/>
               <View style={{marginLeft: 9}}>
                 <Text style={styles.textBase}>Receita</Text>
-                <Text style={styles.textBase}>R$ 0,00</Text>
+                <Text style={styles.textBase}>*********</Text>
               </View>
             </View>
           </View>
@@ -55,7 +59,7 @@ export default function Home() {
               <Despesas/>
               <View  style={{marginLeft: 9}}>
                 <Text style={styles.textBase}>Despesas Pagas</Text>
-                <Text style={styles.textBase}>R$ 0,00</Text>
+                <Text style={styles.textBase}>*********</Text>
               </View>
             </View>
             <View style={styles.information}>
@@ -64,7 +68,7 @@ export default function Home() {
               </View>
               <View  style={{marginLeft: 9}}>
                 <Text style={styles.textBase}>Saldo Atual</Text>
-                <Text style={styles.textBase}>R$ 0,00</Text>
+                <Text style={styles.textBase}>*********</Text>
               </View>
             </View>        
           </View>
@@ -75,8 +79,7 @@ export default function Home() {
               <Text style={styles.textBase}>Assine o Premium</Text>
               <Text style={styles.textBase}>R$ 9,90/mensal</Text>
             </View>
-            <Text style={{...styles.textBase, color: '#00C950', textDecorationLine: 'underline', fontWeight: 700,  fontFamily: 'Sansation-Regular'
-}} onPress={navigateToAssine}>
+            <Text style={{...styles.textBase, color: '#00C950', textDecorationLine: 'underline', fontWeight: 700,  fontFamily: 'Sansation-Regular'}}>
               Escolha o Plano
             </Text>
           </View>
@@ -88,8 +91,7 @@ export default function Home() {
               <Text style={{...styles.textBase, color: '#A49A9A', paddingBottom: 12}}>Você ainda não tem nenhum cartão cadastrado</Text>
               <ButtonGroup 
               title='Adicionar Cartão'
-              buttonStyle={{backgroundColor: '#00C950', paddingHorizontal: 75, paddingVertical: 8}}
-              textStyle={{fontSize: 12, fontWeight: '700'}}
+              buttonStyle={{backgroundColor: '#00C950', paddingHorizontal: 50, paddingVertical: 8}}
             />
             </View>
           </View>
@@ -99,8 +101,7 @@ export default function Home() {
               <Text style={{...styles.textBase, color: '#A49A9A', paddingBottom: 12}}>Você ainda não tem nenhuma conta cadastrada</Text>
               <ButtonGroup 
               title='Adicionar Contas'
-              buttonStyle={{backgroundColor: '#00C950', paddingHorizontal: 75, paddingVertical: 8}}
-              textStyle={{fontSize: 12, fontWeight: '700', }}
+              buttonStyle={{backgroundColor: '#00C950', paddingHorizontal: 68, paddingVertical: 8}}
             />
             </View>
           </View>
@@ -113,15 +114,15 @@ export default function Home() {
                 <ButtonGroup 
                 title='Assinar'
                 buttonStyle={{backgroundColor: '#00C950', paddingHorizontal: 75, paddingVertical: 8}}
-                textStyle={{fontSize: 12, fontWeight: '700'}}
               />
               </View>
             </View>
           </View>
+          <DrawerOptions refRBSheet={refRBSheet} />
         </View>
       </View>
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#F9F9F9',
     paddingHorizontal: 31,
-    paddingTop: 50
+    paddingVertical: 50
   },
   header: {
     width: '100%',
@@ -163,7 +164,6 @@ const styles = StyleSheet.create({
   },
   textBase:{
     fontSize: 12,
-    fontWeight: '400',
     fontFamily: 'Sansation-Regular'
   },
   servicos: {
@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     width: '100%', 
     flexDirection: 'column',
     marginBottom: 16,
-    height: 121
   },
   buttonPremium: {
     position: 'absolute',
@@ -187,9 +186,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#00C950',
     paddingHorizontal: 8, 
     color: 'white',
-    fontWeight: '700',
     borderRadius: 5,
-    fontFamily: 'Sansation-Regular'
+    fontFamily: 'Sansation-Bold',
+    paddingBottom: 2
   },
   containerMain:{
     paddingBottom: 16,

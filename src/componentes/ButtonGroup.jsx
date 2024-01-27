@@ -1,14 +1,18 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import CustomText from './CustomText';
 
 
 export default function ButtonGroup ({ onPress, title, buttonStyle, textStyle }) {
+
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-      <Text style={[styles.text, textStyle]}>{title}</Text>
+      {/* Passe o texto diretamente como filho de CustomText */}
+      <CustomText style={[styles.text,textStyle]} texto={title}/>
     </TouchableOpacity>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   button: {
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffffff',
-    fontSize: 12,
-    fontFamily: 'Sansation-Regular'
+    fontSize: 16,
+    fontFamily: 'Sansation-Bold'
   },
 });
