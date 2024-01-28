@@ -7,7 +7,6 @@ export default function ButtonGroup ({ onPress, title, buttonStyle, textStyle })
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-      {/* Passe o texto diretamente como filho de CustomText */}
       <CustomText style={[styles.text,textStyle]} texto={title}/>
     </TouchableOpacity>
   );

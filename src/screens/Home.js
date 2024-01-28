@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-import DrawerOptions from '../componentes/DrawerOptions';
+import DrawerBottom from '../componentes/DrawerBottom';
 import React, { useRef } from "react";
+import OptionsHome from '../componentes/OptionsHome';
 
 import Options from '../../assets/options.svg'
 import Notificacion from '../../assets/notificacao.svg';
@@ -12,6 +12,7 @@ import Receitas from '../../assets/receita.svg';
 import Despesas from '../../assets/desPagas.svg';
 import Saldo from '../../assets/saldo.svg';
 import ButtonGroup from '../componentes/ButtonGroup';
+import CustomText from '../componentes/CustomText';
 
 export default function Home() {
   const refRBSheet = useRef();
@@ -77,7 +78,7 @@ export default function Home() {
           <View style={{...styles.information, flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center', paddingRight: 29}}>
             <View>
               <Text style={styles.textBase}>Assine o Premium</Text>
-              <Text style={styles.textBase}>R$ 9,90/mensal</Text>
+              <Text style={styles.textBase}><CustomText style={{fontFamily: 'Sansation-Bold'}} texto={'R$ 9,90'}/>/mensal</Text>
             </View>
             <Text style={{...styles.textBase, color: '#00C950', textDecorationLine: 'underline', fontWeight: 700,  fontFamily: 'Sansation-Regular'}}>
               Escolha o Plano
@@ -118,7 +119,7 @@ export default function Home() {
               </View>
             </View>
           </View>
-          <DrawerOptions refRBSheet={refRBSheet} />
+          <DrawerBottom refRBSheet={refRBSheet} altura={327}><OptionsHome/></DrawerBottom>
         </View>
       </View>
       <StatusBar style="auto" />
